@@ -1,1 +1,1 @@
-"# rate-your-products-api" 
+# rate-your-products-api
