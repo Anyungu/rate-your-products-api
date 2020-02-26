@@ -1,0 +1,22 @@
+{
+  "name": "rate-your-products-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anyungu/rate-your-products-api.git"
+  },
+  "author": "Anyungu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anyungu/rate-your-products-api/issues"
+  },
+  "homepage": "https://github.com/Anyungu/rate-your-products-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
