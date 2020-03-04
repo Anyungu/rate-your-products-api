@@ -9,15 +9,13 @@ export async function createUser(root, req, res) {
 
     try {
 
-        console.log(req);
-
-        const value = await User.create({ id: req.id, votes: 0 })
+        const value = await User.create({ email: req.id, votes: 0 })
 
         const x = {__typename: "User"}
 
 
-        console.log( { ...x , ...value}
-            );
+        return { ...value._doc , ...x}
+            
 
 
     } catch (err) {

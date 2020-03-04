@@ -12,7 +12,7 @@ type Query {
 }
 
 type User {
-  id: String 
+  email: String 
   votes: Int 
 }
 
