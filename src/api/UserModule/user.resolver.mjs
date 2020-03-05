@@ -1,10 +1,14 @@
 
 
-import { createUser } from './user.controller.mjs';
+import { createUser, getOneUser, getAllUsers } from './user.controller.mjs';
 
 
 export var resolvers = {
     Mutation: {
         createUser
     },
+    Query: {
+        getOneUser,
+        getAllUsers
+    }
 };

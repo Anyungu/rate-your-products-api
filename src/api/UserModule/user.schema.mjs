@@ -2,31 +2,49 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-const {  gql } = require('apollo-server');
+const { gql } = require('apollo-server');
 
 
 export const typeDefs = gql`
-type Query {
-  user(id: Int!): User
-  users(gender: String): [User]
-}
 
 type User {
   email: String 
   votes: Int 
 }
 
-type UserNotFound {
-  message: String!
-}
-
 type UserNotCreated {
+  code: Int!
   message: String!
 }
 
-union UserCreateResult = User | UserNotCreated
+type UserCreated {
+  code: Int!
+  message: String!
+  data: User!
+}
+
+union UserCreateResult = UserCreated | UserNotCreated
 
 type Mutation {
-  createUser(id: String!): UserCreateResult!
+  createUser(email: String!): UserCreateResult!
 }
+
+type QueryNotFound {
+  code: Int!
+  message: String!
+}
+
+type QueryFound {
+  code: Int!
+  message: String!
+  data: [User]!
+}
+
+union UserResult = QueryFound | QueryNotFound
+
+type Query {
+  getOneUser(email: String!): UserResult!
+  getAllUsers: UserResult!
+}
+
 `;
