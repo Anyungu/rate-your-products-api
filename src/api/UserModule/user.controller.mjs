@@ -11,13 +11,13 @@ export async function createUser(root, req) {
         return { 
             data: value._doc, 
             code: 200, 
-            __typename: "UserCreated", 
+            __typename: "UserMutationCommitted", 
             message: "User Created Successfully" 
         }
 
     } catch (err) {
         return {
-            __typename: "UserNotCreated",
+            __typename: "UserMutationNotCommitted",
             code: 401,
             message: err.errmsg
         }
@@ -36,14 +36,14 @@ export async function getOneUser(root, req) {
             return { 
                 data: [user], 
                 code: 200, 
-                __typename: "QueryFound", 
+                __typename: "UserQueryFound", 
                 message: "User Found" 
             }
 
         }
 
         return {
-            __typename: "QueryNotFound",
+            __typename: "UserQueryNotFound",
             code: 401,
             message: "User not Found"
         }
@@ -55,7 +55,7 @@ export async function getOneUser(root, req) {
         console.log(err);
 
         return {
-            __typename: "QueryNotFound",
+            __typename: "UserQueryNotFound",
             code: 401,
             message: err.errmsg
         }
@@ -75,14 +75,14 @@ export async function getAllUsers(root, req) {
             return { 
                 data: user, 
                 code: 200, 
-                __typename: "QueryFound", 
+                __typename: "UserQueryFound", 
                 message: "Users Found" 
             }
 
         }
 
         return {
-            __typename: "QueryNotFound",
+            __typename: "UserQueryNotFound",
             code: 401,
             message: "Users not Found"
         }
@@ -94,7 +94,7 @@ export async function getAllUsers(root, req) {
         console.log(err);
 
         return {
-            __typename: "QueryNotFound",
+            __typename: "UserQueryNotFound",
             code: 401,
             message: err.errmsg
         }
@@ -102,3 +102,6 @@ export async function getAllUsers(root, req) {
     }
 
 }
+
+
+

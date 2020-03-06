@@ -5,8 +5,8 @@ const require = createRequire(import.meta.url);
 
 const { ApolloServer} = require('apollo-server');
 
-import {typeDefs} from './api/UserModule/user.schema.mjs';
-import {resolvers} from './api/UserModule/user.resolver.mjs';
+import {typeDefs} from './api/index.mjs';
+import {resolvers} from './api/index.mjs';
 
 import {dbConnect} from './config/db.mjs';
 

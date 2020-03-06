@@ -3,7 +3,7 @@
 import { createUser, getOneUser, getAllUsers } from './user.controller.mjs';
 
 
-export var resolvers = {
+export var userResolvers = {
     Mutation: {
         createUser
     },
