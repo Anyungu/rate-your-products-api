@@ -13,6 +13,7 @@ export const shopTypeDefs = gql`
         name: String!
         votes: Int!
         description: String!
+        password: String!
     }
 
     type ShopMutationNotCommitted {
@@ -23,14 +24,15 @@ export const shopTypeDefs = gql`
     type ShopMutationCommitted {
         code: Int!
         message: String!
-        data: Shop!
+        data: [Shop]!
     }
 
     union ShopMutationResult = ShopMutationCommitted | ShopMutationNotCommitted
 
     extend type Mutation {
-        createShop(email: String!, name: String!, description: String!): ShopMutationResult!
+        createShop(email: String!, name: String!, description: String!, password: String!): ShopMutationResult!
         availOrUnavailShop(email: String!, avail:Boolean): ShopMutationResult!
+        logInShop(email: String!, password: String!): ShopMutationResult!
     }
 
     type ShopQueryNotFound {

@@ -14,24 +14,27 @@ import { shoeTypeDefs as Shoe } from './ShoeModule/shoe.schema.mjs';
 import { shoeResolvers } from './ShoeModule/shoe.resolver.mjs';
 
 
-const Root = gql`
+import { voteTypeDefs as Vote } from './VoteModule/vote.schema.mjs';
+import { voteResolvers } from './VoteModule/vote.resolver.mjs';
+
+
+const Root = gql `
         type Query {
             root: String
         }
 
         type Mutation {
             root: String
-        }
-          
+        }        
 `
 
 
 export const typeDefs =
-    [Root, User, Shop, Shoe]
+    [Root, User, Shop, Shoe, Vote]
 
 
 
 export const resolvers = 
-    [userResolvers, shopResolvers, shoeResolvers]
+    [userResolvers, shopResolvers, shoeResolvers, voteResolvers]
 
 

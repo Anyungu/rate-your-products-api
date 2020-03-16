@@ -10,12 +10,8 @@ import {resolvers} from './api/index.mjs';
 
 import {dbConnect} from './config/db.mjs';
 
-// Create an express server and a GraphQL endpoint
-
 
 dbConnect();
-
-
 
 const server = new ApolloServer({ typeDefs, resolvers });
 

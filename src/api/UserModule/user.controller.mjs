@@ -1,11 +1,15 @@
 
 import User from './user.model.mjs';
+import {sendMail} from '../Services/email.service.mjs';
 
 
 export async function createUser(root, req) {
 
     try {
-
+        
+        await sendMail(req.email);
+        
+        
         const value = await User.create({ email: req.email, votes: 0 })
 
         return { 

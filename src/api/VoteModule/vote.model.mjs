@@ -6,7 +6,7 @@ import mongoosePaginate from 'mongoose-paginate';
 const {Schema} = mongoose;
 
 
-const shopSchema = new Schema({
+const voteSchema = new Schema({
 
     email: {
         type: String,
@@ -14,28 +14,25 @@ const shopSchema = new Schema({
         unique: [true, 'Email is unique']
     },
     
-    votes : {
-        type: Number,
-        required: [true, 'vote tally is required']
-    },
-
-    name: {
+    shopEmail: {
         type: String,
         required: [true, 'Email is required'],
         unique: [true, 'Email is unique']
     },
+    
 
-    description: {
+    vote : {
+        type: Number,
+        required: [true, 'vote tally is required']
+    },
+
+    
+    shoeID: {
         type: String,
-    },
-    avail: {
-        type: Boolean
-    },
-    shoeCount: {
-        type: Number
+        required: [true, 'shoeID tally is required']
     }
 });
 
-shopSchema.plugin(mongoosePaginate);
+voteSchema.plugin(mongoosePaginate);
 
-export default mongoose.model('Shop', shopSchema);
+export default mongoose.model('Vote', voteSchema);

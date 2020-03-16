@@ -1,4 +1,4 @@
-
+ 
 
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
@@ -47,9 +47,9 @@ export const voteTypeDefs = gql`
     union VoteQueryResult = VoteQueryFound | VoteQueryNotFound
 
     extend type Query {
-        getOneVote(email: String!): VoteQueryResult!
-        getAllVotes: VoteQueryResult!
-        getAvailableOrUnavailableVotes(avail: Boolean!): VoteQueryResult!
+        getOneUserVotes(email: String!): VoteQueryResult!
+        getOneShoeVotes(shoeID: String!): VoteQueryResult!
+        getOneShopVotes(shopEmail: String!): VoteQueryResult!
 
     }
 

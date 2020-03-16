@@ -5,14 +5,16 @@ import {
     getOneShop,
     getAllShops,
     getAvailableOrUnavailableShops,
-    availOrUnavailShop
+    availOrUnavailShop,
+    logInShop
 } from './shop.controller.mjs';
 
 
 export var shopResolvers = {
     Mutation: {
         createShop,
-        availOrUnavailShop
+        availOrUnavailShop,
+        logInShop
     },
     Query: {
         getOneShop,
