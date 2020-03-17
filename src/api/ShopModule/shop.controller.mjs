@@ -1,6 +1,7 @@
 
 import Shop from './shop.model.mjs';
 import { hash, match } from '../Services/bcrypt.service.mjs';
+import {createToken} from '../AuthModule/auth.service.mjs';
 
 
 export async function createShop(root, req) {
@@ -89,17 +90,34 @@ export async function logInShop(root, req) {
 
             if (matchP) {
 
-                return {
-                    data: [shop],
-                    code: 200,
-                    __typename: "ShopMutationCommitted",
-                    message: "Shop Found"
+                const obj = await createToken(req.email);
+
+                console.log(obj)
+
+                if (obj.bool) {
+
+                    return {
+                        data: [obj.tok],
+                        code: 200,
+                        __typename: "AuthMutationCommitted",
+                        message: "Shop Found"
+                    }
+
+                }else {
+
+                    return {
+                        __typename: "AuthMutationNotCommitted",
+                        code: 401,
+                        message: obj.tok
+                    }    
+
                 }
+
 
             } else {
 
                 return {
-                    __typename: "ShopMutationNotCommitted",
+                    __typename: "AuthMutationNotCommitted",
                     code: 401,
                     message: "Shop Password not Correct"
                 }
@@ -109,7 +127,7 @@ export async function logInShop(root, req) {
         }
 
         return {
-            __typename: "ShopMutationNotCommitted",
+            __typename: "AuthMutationNotCommitted",
             code: 401,
             message: "Shop Email Not Found"
         }
@@ -118,7 +136,7 @@ export async function logInShop(root, req) {
     } catch (err) {
 
         return {
-            __typename: "ShopMutationNotCommitted",
+            __typename: "AuthMutationNotCommitted",
             code: 401,
             message: String(err)
         }

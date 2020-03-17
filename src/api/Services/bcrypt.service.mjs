@@ -20,3 +20,11 @@ export async function match (rawPassword, hashedPassword) {
     });
 
 }
+
+export async function generateToken(email, createdAt) {
+
+    return bcrypt.hash(email + createdAt.toLocaleString() , saltRounds).then(function(hash) {
+        return hash;
+    });
+
+}

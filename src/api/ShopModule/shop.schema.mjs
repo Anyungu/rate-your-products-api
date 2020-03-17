@@ -32,7 +32,7 @@ export const shopTypeDefs = gql`
     extend type Mutation {
         createShop(email: String!, name: String!, description: String!, password: String!): ShopMutationResult!
         availOrUnavailShop(email: String!, avail:Boolean): ShopMutationResult!
-        logInShop(email: String!, password: String!): ShopMutationResult!
+        logInShop(email: String!, password: String!): AuthMutationResult!
     }
 
     type ShopQueryNotFound {
