@@ -1,2 +1,3 @@
 /node_modules
 /src/api/Services/email.service.mjs
+/src/config/db.mjs
