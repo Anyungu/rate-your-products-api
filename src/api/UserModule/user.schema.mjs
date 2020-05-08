@@ -10,6 +10,7 @@ export const userTypeDefs = gql`
 type User {
   email: String 
   votes: Int 
+  verified: Boolean
 }
 
 type UserMutationNotCommitted {
@@ -27,6 +28,7 @@ union UserMutationResult = UserMutationCommitted | UserMutationNotCommitted
 
 extend type Mutation {
   createUser(email: String!): UserMutationResult!
+  verifyUser(email: String!, code: Int!): UserMutationResult!
 }
 
 type UserQueryNotFound {

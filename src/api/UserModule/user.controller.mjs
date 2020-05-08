@@ -6,14 +6,18 @@ import {sendMail} from '../Services/email.service.mjs';
 export async function createUser(root, req) {
 
     try {
+
+        var code = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
         
-        await sendMail(req.email);
-        
-        
-        const value = await User.create({ email: req.email, votes: 0 })
+        const lol = await sendMail(req.email, code);
+
+        console.log(lol);
+            
+        // const value = await User.create({ email: req.email, votes: 0, code: code, verified: false })
 
         return { 
-            data: value._doc, 
+            // data: value._doc, 
+            data: {},
             code: 200, 
             __typename: "UserMutationCommitted", 
             message: "User Created Successfully" 
@@ -22,6 +26,35 @@ export async function createUser(root, req) {
     } catch (err) {
         return {
             __typename: "UserMutationNotCommitted",
+            code: 401,
+            message: err.errmsg
+        }
+    }
+
+}
+
+
+export async function verifyUser(root, req) {
+
+    try {
+
+        const value = await User.updateOne({
+            email: req.email,
+            code: req.code
+        }, {
+            verified: true
+        })
+
+        return {
+            data: value.n,
+            code: 200,
+            __typename: "UserMutationCommitted",
+            message: "User verified Successfully"
+        }
+
+    } catch (err) {
+        return {
+            __typename: "userMutationNotCommitted",
             code: 401,
             message: err.errmsg
         }

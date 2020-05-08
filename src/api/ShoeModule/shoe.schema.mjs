@@ -25,7 +25,7 @@ export const shoeTypeDefs = gql`
     type ShoeMutationCommitted {
       code: Int!
       message: String!
-      data: Shop!
+      data: Shoe!
     }
 
     union ShoeMutationResult = ShoeMutationCommitted | ShoeMutationNotCommitted

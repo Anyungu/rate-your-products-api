@@ -19,6 +19,9 @@ import { voteResolvers } from './VoteModule/vote.resolver.mjs';
 
 import {authTypeDefs as Auth} from './AuthModule/auth.schema.mjs';
 
+import { categoryTypeDefs as Category } from './CategoryModule/category.schema.mjs';
+import { categoryResolvers } from './CategoryModule/category.resolver.mjs';
+
 
 const Root = gql `
         type Query {
@@ -32,11 +35,11 @@ const Root = gql `
 
 
 export const typeDefs =
-    [Root, User, Shop, Shoe, Vote, Auth]
+    [Root, User, Shop, Shoe, Vote, Auth, Category]
 
 
 
 export const resolvers = 
-    [userResolvers, shopResolvers, shoeResolvers, voteResolvers]
+    [userResolvers, shopResolvers, shoeResolvers, voteResolvers, categoryResolvers]
 
 

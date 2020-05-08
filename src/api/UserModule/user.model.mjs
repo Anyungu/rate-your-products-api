@@ -18,6 +18,16 @@ const userSchema = new Schema({
         type: Number,
         required: [true, 'vote tally is required']
     },
+
+    verified: {
+        type: Boolean,
+        required: [true, 'verification is required']
+    },
+
+    code: {
+        type: Number,
+        required: [true, 'code is required']
+    }
 });
 
 userSchema.plugin(mongoosePaginate);
