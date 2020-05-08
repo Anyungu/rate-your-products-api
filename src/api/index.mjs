@@ -2,7 +2,7 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-const { gql } = require('apollo-server');
+const { gql } = require('apollo-server-express');
 
 import { userTypeDefs as User } from './UserModule/user.schema.mjs';
 import { userResolvers } from './UserModule/user.resolver.mjs';

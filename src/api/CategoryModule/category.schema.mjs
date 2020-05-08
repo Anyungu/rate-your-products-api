@@ -2,7 +2,7 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-const { gql } = require('apollo-server');
+const { gql } = require('apollo-server-express');
 
 
 export const categoryTypeDefs = gql`
