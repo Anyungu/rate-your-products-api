@@ -1,6 +1,7 @@
 
 import Auth from './auth.model.mjs';
-import {generateToken} from '../Services/bcrypt.service.mjs';
+import { generateToken } from '../Services/bcrypt.service.mjs';
+import { getOneUser } from '../UserModule/user.service.mjs';
 
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
@@ -9,13 +10,39 @@ const require = createRequire(import.meta.url);
 var moment = require('moment-timezone');
 
 
-export async function createToken (email) {
+export async function loginUser(email) {
+
+
+    try {
+
+        var user = await getOneUser(email);
+
+        if (typeof user.user === "undefined") {
+
+            return {
+                error: user.message
+            }
+
+        } else {
+
+
+
+        }
+
+    } catch (err) {
+
+    }
+}
+
+
+
+export async function createToken(email) {
 
     var obj = {};
 
     try {
 
-        const auth = await Auth.findOne({_id: email})
+        const auth = await Auth.findOne({ _id: email })
 
         var dateString = new Date().toLocaleString();
 
@@ -31,7 +58,7 @@ export async function createToken (email) {
 
         if (auth) {
 
-            auth.overwrite({ 
+            auth.overwrite({
                 _id: email,
                 token: tok,
                 createdAt: dateC,
@@ -42,9 +69,9 @@ export async function createToken (email) {
 
             obj.bool = true;
             obj.tok = auth;
-            return obj; 
+            return obj;
 
-        }else {
+        } else {
 
             const create = await Auth.create({
                 _id: email,
@@ -55,18 +82,18 @@ export async function createToken (email) {
 
             obj.bool = true;
             obj.tok = create._doc;
-            return obj; 
+            return obj;
 
         }
 
-    }catch (err) {
+    } catch (err) {
 
         obj.bool = false;
         obj.tok = String(err);
-        return obj; 
+        return obj;
     }
 
-   
+
 
 
 

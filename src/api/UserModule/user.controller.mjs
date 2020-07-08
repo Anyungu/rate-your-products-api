@@ -1,6 +1,7 @@
 
 import User from './user.model.mjs';
-import {sendMail} from '../Services/email.service.mjs';
+import { sendMail } from '../Services/email.service.mjs';
+
 
 
 export async function createUser(root, req) {
@@ -8,19 +9,19 @@ export async function createUser(root, req) {
     try {
 
         var code = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
-        
+
         const lol = await sendMail(req.email, code);
 
         console.log(lol);
-            
-        // const value = await User.create({ email: req.email, votes: 0, code: code, verified: false })
 
-        return { 
-            // data: value._doc, 
+        const value = await User.create({ email: req.email, votes: 0, code: code, verified: false })
+
+        return {
+            data: value._doc,
             data: {},
-            code: 200, 
-            __typename: "UserMutationCommitted", 
-            message: "User Created Successfully" 
+            code: 200,
+            __typename: "UserMutationCommitted",
+            message: "User Created Successfully"
         }
 
     } catch (err) {
@@ -70,11 +71,11 @@ export async function getOneUser(root, req) {
 
         if (user) {
 
-            return { 
-                data: [user], 
-                code: 200, 
-                __typename: "UserQueryFound", 
-                message: "User Found" 
+            return {
+                data: [user],
+                code: 200,
+                __typename: "UserQueryFound",
+                message: "User Found"
             }
 
         }
@@ -85,7 +86,7 @@ export async function getOneUser(root, req) {
             message: "User not Found"
         }
 
-        
+
 
     } catch (err) {
 
@@ -109,11 +110,11 @@ export async function getAllUsers(root, req) {
 
         if (user) {
 
-            return { 
-                data: user, 
-                code: 200, 
-                __typename: "UserQueryFound", 
-                message: "Users Found" 
+            return {
+                data: user,
+                code: 200,
+                __typename: "UserQueryFound",
+                message: "Users Found"
             }
 
         }
@@ -124,7 +125,7 @@ export async function getAllUsers(root, req) {
             message: "Users not Found"
         }
 
-        
+
 
     } catch (err) {
 
